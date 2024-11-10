@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estado del Servidor</title>
+    <style>
+        /* Estilos generales */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #282c34;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #61dafb;
+        }
+
+        /* Contenedor principal */
+        .container {
+            background-color: #20232a;
+            padding: 40px;
+            width: 90%;
+            max-width: 450px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            border: 2px solid #61dafb;
+        }
+
+        /* Título */
+        h1 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: #61dafb;
+            border-bottom: 2px solid #61dafb;
+            padding-bottom: 10px;
+        }
+
+        /* Estado de cada servicio */
+        .status {
+            font-size: 18px;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        .operativo {
+            color: #28a745; /* Verde */
+            font-weight: bold;
+        }
+
+        .terminado {
+            color: #ff4d4f; /* Rojo */
+            font-weight: bold;
+        }
+
+        .pronto {
+            color: #ffa500; /* Naranja */
+            font-weight: bold;
+        }
+
+        /* Animación de entrada */
+        .container {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Estado del Servidor</h1>
+        <p class="status">Desarrollo del servidor: <span class="operativo">Operativo</span></p>
+        <p class="status" id="halloween-status">Mantenimiento de Halloween: <span class="terminado">Terminado</span></p>
+        <p class="status" id="navidad-status">Mantenimiento de Navidad: <span class="pronto">Pronto</span></p>
+    </div>
+
+    <script>
+        // Función para actualizar el estado según la fecha
+        function actualizarEstado() {
+            const ahora = new Date();
+            const halloweenFecha = new Date('2025-10-20T00:00:00+02:00'); // Octubre 20, 2025, 00:00 hora España
+            const navidadFecha = new Date('2024-12-15T00:00:00+01:00');  // Diciembre 15, 2024, 00:00 hora España
+
+            // Elementos para actualizar el estado
+            const halloweenEstado = document.getElementById('halloween-status');
+            const navidadEstado = document.getElementById('navidad-status');
+
+            // Cambia el estado a "Operativo" si la fecha actual es igual o posterior a las fechas especificadas
+            if (ahora >= halloweenFecha) {
+                halloweenEstado.innerHTML = 'Mantenimiento de Halloween: <span class="operativo">Operativo</span>';
+            }
+            if (ahora >= navidadFecha) {
+                navidadEstado.innerHTML = 'Mantenimiento de Navidad: <span class="operativo">Operativo</span>';
+            }
+        }
+
+        // Llamada a la función para establecer el estado inicial al cargar la página
+        actualizarEstado();
+    </script>
+</body>
+</html>
